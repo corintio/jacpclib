@@ -8,9 +8,6 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-/**
- * Created by david.home on 17.11.17.
- */
 public class ACPCParser {
 
     public ServerResponse parseServerResponse(String encodedServerResponse) {

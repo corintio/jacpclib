@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-/**
- * Created by david.home on 18.11.17.
- */
 public enum Card {
 
     _2S("2s"),

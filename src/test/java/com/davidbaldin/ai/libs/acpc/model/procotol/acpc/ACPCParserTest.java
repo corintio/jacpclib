@@ -3,9 +3,6 @@ package com.davidbaldin.ai.libs.acpc.model.procotol.acpc;
 import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.ServerResponse;
 import org.junit.Test;
 
-/**
- * Created by david.home on 18.11.17.
- */
 public class ACPCParserTest {
 
     private static String EOF = "";

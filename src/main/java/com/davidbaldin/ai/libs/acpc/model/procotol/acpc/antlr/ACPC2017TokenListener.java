@@ -7,9 +7,6 @@ import org.apache.log4j.Logger;
 
 import java.util.Optional;
 
-/**
- * Created by david.home on 19.11.17.
- */
 public class ACPC2017TokenListener extends ACPC2017BaseListener {
 
     final static Logger LOGGER = Logger.getLogger(ACPC2017TokenListener.class);

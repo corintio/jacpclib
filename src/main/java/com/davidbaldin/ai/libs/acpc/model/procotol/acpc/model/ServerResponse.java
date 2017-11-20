@@ -1,8 +1,5 @@
 package com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model;
 
-/**
- * Created by david.home on 18.11.17.
- */
 public class ServerResponse {
     private MatchState matchState = new MatchState();
 

@@ -1,8 +1,5 @@
 package com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model;
 
-/**
- * Created by david.home on 18.11.17.
- */
 public class Betting {
     private BettingType type;
     private Long value = null;

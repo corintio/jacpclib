@@ -3,9 +3,6 @@ package com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by david.home on 18.11.17.
- */
 public class MatchState {
     private int position = 0;
     private int handNumber = 0;
