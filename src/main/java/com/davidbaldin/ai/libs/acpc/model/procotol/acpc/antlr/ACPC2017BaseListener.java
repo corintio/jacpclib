@@ -172,18 +172,6 @@ public class ACPC2017BaseListener implements ACPC2017Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterHole_cards(ACPC2017Parser.Hole_cardsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitHole_cards(ACPC2017Parser.Hole_cardsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterBoard_cards(ACPC2017Parser.Board_cardsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -191,6 +179,18 @@ public class ACPC2017BaseListener implements ACPC2017Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBoard_cards(ACPC2017Parser.Board_cardsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterHole_cards(ACPC2017Parser.Hole_cardsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitHole_cards(ACPC2017Parser.Hole_cardsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

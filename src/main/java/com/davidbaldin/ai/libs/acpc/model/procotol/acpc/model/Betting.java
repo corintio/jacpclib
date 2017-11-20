@@ -12,15 +12,25 @@ public class Betting {
         return value;
     }
 
-    public void setType(BettingType type) {
+    public Betting setType(BettingType type) {
         this.type = type;
+        return this;
     }
 
-    public void setValue(Long value) {
+    public Betting setValue(Long value) {
         this.value = value;
+        return this;
     }
 
     public boolean isNoLimit() {
         return value != null;
+    }
+
+    @Override
+    public String toString() {
+        return "Betting{" +
+                "type=" + type +
+                (isNoLimit() ? (", value=" + value) : "") +
+                '}';
     }
 }

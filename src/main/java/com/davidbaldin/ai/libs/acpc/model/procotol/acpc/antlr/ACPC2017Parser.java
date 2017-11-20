@@ -22,12 +22,12 @@ public class ACPC2017Parser extends Parser {
 		RULE_position = 0, RULE_hand_number = 1, RULE_raise_value = 2, RULE_action_fold = 3, 
 		RULE_action_call = 4, RULE_action_raise_value = 5, RULE_action_raise = 6, 
 		RULE_round_x_betting = 7, RULE_betting = 8, RULE_player_card = 9, RULE_playerx_cards = 10, 
-		RULE_round_card = 11, RULE_roundx_board_cards = 12, RULE_hole_cards = 13, 
-		RULE_board_cards = 14, RULE_cards = 15, RULE_match_state = 16, RULE_server_response = 17;
+		RULE_round_card = 11, RULE_roundx_board_cards = 12, RULE_board_cards = 13, 
+		RULE_hole_cards = 14, RULE_cards = 15, RULE_match_state = 16, RULE_server_response = 17;
 	public static final String[] ruleNames = {
 		"position", "hand_number", "raise_value", "action_fold", "action_call", 
 		"action_raise_value", "action_raise", "round_x_betting", "betting", "player_card", 
-		"playerx_cards", "round_card", "roundx_board_cards", "hole_cards", "board_cards", 
+		"playerx_cards", "round_card", "roundx_board_cards", "board_cards", "hole_cards", 
 		"cards", "match_state", "server_response"
 	};
 
@@ -580,24 +580,30 @@ public class ACPC2017Parser extends Parser {
 	public final Playerx_cardsContext playerx_cards() throws RecognitionException {
 		Playerx_cardsContext _localctx = new Playerx_cardsContext(_ctx, getState());
 		enterRule(_localctx, 20, RULE_playerx_cards);
-		int _la;
 		try {
+			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(72); 
 			_errHandler.sync(this);
-			_la = _input.LA(1);
+			_alt = 1;
 			do {
-				{
-				{
-				setState(71);
-				player_card();
-				}
+				switch (_alt) {
+				case 1:
+					{
+					{
+					setState(71);
+					player_card();
+					}
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
 				}
 				setState(74); 
 				_errHandler.sync(this);
-				_la = _input.LA(1);
-			} while ( _la==CARD );
+				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
+			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
 			}
 		}
 		catch (RecognitionException re) {
@@ -703,95 +709,16 @@ public class ACPC2017Parser extends Parser {
 		return _localctx;
 	}
 
-	public static class Hole_cardsContext extends ParserRuleContext {
-		public List<TerminalNode> HLINE() { return getTokens(ACPC2017Parser.HLINE); }
-		public TerminalNode HLINE(int i) {
-			return getToken(ACPC2017Parser.HLINE, i);
-		}
-		public List<Playerx_cardsContext> playerx_cards() {
-			return getRuleContexts(Playerx_cardsContext.class);
-		}
-		public Playerx_cardsContext playerx_cards(int i) {
-			return getRuleContext(Playerx_cardsContext.class,i);
-		}
-		public Hole_cardsContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_hole_cards; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ACPC2017Listener ) ((ACPC2017Listener)listener).enterHole_cards(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ACPC2017Listener ) ((ACPC2017Listener)listener).exitHole_cards(this);
-		}
-	}
-
-	public final Hole_cardsContext hole_cards() throws RecognitionException {
-		Hole_cardsContext _localctx = new Hole_cardsContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_hole_cards);
-		int _la;
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(85);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			if (_la==CARD) {
-				{
-				setState(84);
-				playerx_cards();
-				}
-			}
-
-			setState(87);
-			match(HLINE);
-			setState(89);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			if (_la==CARD) {
-				{
-				setState(88);
-				playerx_cards();
-				}
-			}
-
-			setState(93);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			if (_la==HLINE) {
-				{
-				setState(91);
-				match(HLINE);
-				setState(92);
-				playerx_cards();
-				}
-			}
-
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
 	public static class Board_cardsContext extends ParserRuleContext {
-		public List<TerminalNode> SLASH() { return getTokens(ACPC2017Parser.SLASH); }
-		public TerminalNode SLASH(int i) {
-			return getToken(ACPC2017Parser.SLASH, i);
-		}
 		public List<Roundx_board_cardsContext> roundx_board_cards() {
 			return getRuleContexts(Roundx_board_cardsContext.class);
 		}
 		public Roundx_board_cardsContext roundx_board_cards(int i) {
 			return getRuleContext(Roundx_board_cardsContext.class,i);
+		}
+		public List<TerminalNode> SLASH() { return getTokens(ACPC2017Parser.SLASH); }
+		public TerminalNode SLASH(int i) {
+			return getToken(ACPC2017Parser.SLASH, i);
 		}
 		public Board_cardsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -809,27 +736,155 @@ public class ACPC2017Parser extends Parser {
 
 	public final Board_cardsContext board_cards() throws RecognitionException {
 		Board_cardsContext _localctx = new Board_cardsContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_board_cards);
+		enterRule(_localctx, 26, RULE_board_cards);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(99);
+			setState(84);
+			roundx_board_cards();
+			setState(89);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==SLASH) {
 				{
 				{
-				setState(95);
+				setState(85);
 				match(SLASH);
-				setState(96);
+				setState(86);
 				roundx_board_cards();
 				}
 				}
-				setState(101);
+				setState(91);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Hole_cardsContext extends ParserRuleContext {
+		public Playerx_cardsContext playerx_cards() {
+			return getRuleContext(Playerx_cardsContext.class,0);
+		}
+		public List<TerminalNode> HLINE() { return getTokens(ACPC2017Parser.HLINE); }
+		public TerminalNode HLINE(int i) {
+			return getToken(ACPC2017Parser.HLINE, i);
+		}
+		public Hole_cardsContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_hole_cards; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ACPC2017Listener ) ((ACPC2017Listener)listener).enterHole_cards(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ACPC2017Listener ) ((ACPC2017Listener)listener).exitHole_cards(this);
+		}
+	}
+
+	public final Hole_cardsContext hole_cards() throws RecognitionException {
+		Hole_cardsContext _localctx = new Hole_cardsContext(_ctx, getState());
+		enterRule(_localctx, 28, RULE_hole_cards);
+		int _la;
+		try {
+			setState(115);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,11,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				{
+				setState(92);
+				playerx_cards();
+				setState(94); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				do {
+					{
+					{
+					setState(93);
+					match(HLINE);
+					}
+					}
+					setState(96); 
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				} while ( _la==HLINE );
+				}
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				{
+				setState(99); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				do {
+					{
+					{
+					setState(98);
+					match(HLINE);
+					}
+					}
+					setState(101); 
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				} while ( _la==HLINE );
+				setState(103);
+				playerx_cards();
+				setState(105); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				do {
+					{
+					{
+					setState(104);
+					match(HLINE);
+					}
+					}
+					setState(107); 
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				} while ( _la==HLINE );
+				}
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				{
+				setState(110); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				do {
+					{
+					{
+					setState(109);
+					match(HLINE);
+					}
+					}
+					setState(112); 
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				} while ( _la==HLINE );
+				setState(114);
+				playerx_cards();
+				}
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -870,9 +925,9 @@ public class ACPC2017Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(102);
+			setState(117);
 			hole_cards();
-			setState(103);
+			setState(118);
 			board_cards();
 			}
 		}
@@ -926,29 +981,29 @@ public class ACPC2017Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(105);
+			setState(120);
 			match(MATCHSTATE);
-			setState(106);
+			setState(121);
 			position();
-			setState(107);
+			setState(122);
 			match(COLON);
-			setState(108);
+			setState(123);
 			hand_number();
-			setState(109);
+			setState(124);
 			match(COLON);
-			setState(111);
+			setState(126);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << FOLD) | (1L << CALL) | (1L << RAISE))) != 0)) {
 				{
-				setState(110);
+				setState(125);
 				betting();
 				}
 			}
 
-			setState(113);
+			setState(128);
 			match(COLON);
-			setState(114);
+			setState(129);
 			cards();
 			}
 		}
@@ -988,9 +1043,9 @@ public class ACPC2017Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(116);
+			setState(131);
 			match_state();
-			setState(117);
+			setState(132);
 			match(EOF);
 			}
 		}
@@ -1006,34 +1061,40 @@ public class ACPC2017Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13z\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
-		"\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23"+
-		"\t\23\3\2\3\2\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3\7\3\7\3\7\3\b\3\b\3\t"+
-		"\3\t\3\t\3\t\6\t:\n\t\r\t\16\t;\3\n\3\n\3\n\5\nA\n\n\7\nC\n\n\f\n\16\n"+
-		"F\13\n\3\13\3\13\3\f\6\fK\n\f\r\f\16\fL\3\r\3\r\3\16\7\16R\n\16\f\16\16"+
-		"\16U\13\16\3\17\5\17X\n\17\3\17\3\17\5\17\\\n\17\3\17\3\17\5\17`\n\17"+
-		"\3\20\3\20\7\20d\n\20\f\20\16\20g\13\20\3\21\3\21\3\21\3\22\3\22\3\22"+
-		"\3\22\3\22\3\22\5\22r\n\22\3\22\3\22\3\22\3\23\3\23\3\23\3\23\2\2\24\2"+
-		"\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$\2\2\2t\2&\3\2\2\2\4(\3\2\2\2"+
-		"\6*\3\2\2\2\b,\3\2\2\2\n.\3\2\2\2\f\60\3\2\2\2\16\63\3\2\2\2\209\3\2\2"+
-		"\2\22=\3\2\2\2\24G\3\2\2\2\26J\3\2\2\2\30N\3\2\2\2\32S\3\2\2\2\34W\3\2"+
-		"\2\2\36e\3\2\2\2 h\3\2\2\2\"k\3\2\2\2$v\3\2\2\2&\'\7\4\2\2\'\3\3\2\2\2"+
-		"()\7\4\2\2)\5\3\2\2\2*+\7\4\2\2+\7\3\2\2\2,-\7\5\2\2-\t\3\2\2\2./\7\6"+
-		"\2\2/\13\3\2\2\2\60\61\7\7\2\2\61\62\5\6\4\2\62\r\3\2\2\2\63\64\7\7\2"+
-		"\2\64\17\3\2\2\2\65:\5\b\5\2\66:\5\n\6\2\67:\5\f\7\28:\5\16\b\29\65\3"+
-		"\2\2\29\66\3\2\2\29\67\3\2\2\298\3\2\2\2:;\3\2\2\2;9\3\2\2\2;<\3\2\2\2"+
-		"<\21\3\2\2\2=D\5\20\t\2>@\7\n\2\2?A\5\20\t\2@?\3\2\2\2@A\3\2\2\2AC\3\2"+
-		"\2\2B>\3\2\2\2CF\3\2\2\2DB\3\2\2\2DE\3\2\2\2E\23\3\2\2\2FD\3\2\2\2GH\7"+
-		"\3\2\2H\25\3\2\2\2IK\5\24\13\2JI\3\2\2\2KL\3\2\2\2LJ\3\2\2\2LM\3\2\2\2"+
-		"M\27\3\2\2\2NO\7\3\2\2O\31\3\2\2\2PR\5\30\r\2QP\3\2\2\2RU\3\2\2\2SQ\3"+
-		"\2\2\2ST\3\2\2\2T\33\3\2\2\2US\3\2\2\2VX\5\26\f\2WV\3\2\2\2WX\3\2\2\2"+
-		"XY\3\2\2\2Y[\7\t\2\2Z\\\5\26\f\2[Z\3\2\2\2[\\\3\2\2\2\\_\3\2\2\2]^\7\t"+
-		"\2\2^`\5\26\f\2_]\3\2\2\2_`\3\2\2\2`\35\3\2\2\2ab\7\n\2\2bd\5\32\16\2"+
-		"ca\3\2\2\2dg\3\2\2\2ec\3\2\2\2ef\3\2\2\2f\37\3\2\2\2ge\3\2\2\2hi\5\34"+
-		"\17\2ij\5\36\20\2j!\3\2\2\2kl\7\13\2\2lm\5\2\2\2mn\7\b\2\2no\5\4\3\2o"+
-		"q\7\b\2\2pr\5\22\n\2qp\3\2\2\2qr\3\2\2\2rs\3\2\2\2st\7\b\2\2tu\5 \21\2"+
-		"u#\3\2\2\2vw\5\"\22\2wx\7\2\2\3x%\3\2\2\2\r9;@DLSW[_eq";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13\u0089\4\2\t\2"+
+		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
+		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
+		"\4\23\t\23\3\2\3\2\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3\7\3\7\3\7\3\b\3\b"+
+		"\3\t\3\t\3\t\3\t\6\t:\n\t\r\t\16\t;\3\n\3\n\3\n\5\nA\n\n\7\nC\n\n\f\n"+
+		"\16\nF\13\n\3\13\3\13\3\f\6\fK\n\f\r\f\16\fL\3\r\3\r\3\16\7\16R\n\16\f"+
+		"\16\16\16U\13\16\3\17\3\17\3\17\7\17Z\n\17\f\17\16\17]\13\17\3\20\3\20"+
+		"\6\20a\n\20\r\20\16\20b\3\20\6\20f\n\20\r\20\16\20g\3\20\3\20\6\20l\n"+
+		"\20\r\20\16\20m\3\20\6\20q\n\20\r\20\16\20r\3\20\5\20v\n\20\3\21\3\21"+
+		"\3\21\3\22\3\22\3\22\3\22\3\22\3\22\5\22\u0081\n\22\3\22\3\22\3\22\3\23"+
+		"\3\23\3\23\3\23\2\2\24\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$\2\2"+
+		"\2\u0086\2&\3\2\2\2\4(\3\2\2\2\6*\3\2\2\2\b,\3\2\2\2\n.\3\2\2\2\f\60\3"+
+		"\2\2\2\16\63\3\2\2\2\209\3\2\2\2\22=\3\2\2\2\24G\3\2\2\2\26J\3\2\2\2\30"+
+		"N\3\2\2\2\32S\3\2\2\2\34V\3\2\2\2\36u\3\2\2\2 w\3\2\2\2\"z\3\2\2\2$\u0085"+
+		"\3\2\2\2&\'\7\4\2\2\'\3\3\2\2\2()\7\4\2\2)\5\3\2\2\2*+\7\4\2\2+\7\3\2"+
+		"\2\2,-\7\5\2\2-\t\3\2\2\2./\7\6\2\2/\13\3\2\2\2\60\61\7\7\2\2\61\62\5"+
+		"\6\4\2\62\r\3\2\2\2\63\64\7\7\2\2\64\17\3\2\2\2\65:\5\b\5\2\66:\5\n\6"+
+		"\2\67:\5\f\7\28:\5\16\b\29\65\3\2\2\29\66\3\2\2\29\67\3\2\2\298\3\2\2"+
+		"\2:;\3\2\2\2;9\3\2\2\2;<\3\2\2\2<\21\3\2\2\2=D\5\20\t\2>@\7\n\2\2?A\5"+
+		"\20\t\2@?\3\2\2\2@A\3\2\2\2AC\3\2\2\2B>\3\2\2\2CF\3\2\2\2DB\3\2\2\2DE"+
+		"\3\2\2\2E\23\3\2\2\2FD\3\2\2\2GH\7\3\2\2H\25\3\2\2\2IK\5\24\13\2JI\3\2"+
+		"\2\2KL\3\2\2\2LJ\3\2\2\2LM\3\2\2\2M\27\3\2\2\2NO\7\3\2\2O\31\3\2\2\2P"+
+		"R\5\30\r\2QP\3\2\2\2RU\3\2\2\2SQ\3\2\2\2ST\3\2\2\2T\33\3\2\2\2US\3\2\2"+
+		"\2V[\5\32\16\2WX\7\n\2\2XZ\5\32\16\2YW\3\2\2\2Z]\3\2\2\2[Y\3\2\2\2[\\"+
+		"\3\2\2\2\\\35\3\2\2\2][\3\2\2\2^`\5\26\f\2_a\7\t\2\2`_\3\2\2\2ab\3\2\2"+
+		"\2b`\3\2\2\2bc\3\2\2\2cv\3\2\2\2df\7\t\2\2ed\3\2\2\2fg\3\2\2\2ge\3\2\2"+
+		"\2gh\3\2\2\2hi\3\2\2\2ik\5\26\f\2jl\7\t\2\2kj\3\2\2\2lm\3\2\2\2mk\3\2"+
+		"\2\2mn\3\2\2\2nv\3\2\2\2oq\7\t\2\2po\3\2\2\2qr\3\2\2\2rp\3\2\2\2rs\3\2"+
+		"\2\2st\3\2\2\2tv\5\26\f\2u^\3\2\2\2ue\3\2\2\2up\3\2\2\2v\37\3\2\2\2wx"+
+		"\5\36\20\2xy\5\34\17\2y!\3\2\2\2z{\7\13\2\2{|\5\2\2\2|}\7\b\2\2}~\5\4"+
+		"\3\2~\u0080\7\b\2\2\177\u0081\5\22\n\2\u0080\177\3\2\2\2\u0080\u0081\3"+
+		"\2\2\2\u0081\u0082\3\2\2\2\u0082\u0083\7\b\2\2\u0083\u0084\5 \21\2\u0084"+
+		"#\3\2\2\2\u0085\u0086\5\"\22\2\u0086\u0087\7\2\2\3\u0087%\3\2\2\2\179"+
+		";@DLS[bgmru\u0080";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

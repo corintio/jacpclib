@@ -138,16 +138,6 @@ public interface ACPC2017Listener extends ParseTreeListener {
 	 */
 	void exitRoundx_board_cards(ACPC2017Parser.Roundx_board_cardsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ACPC2017Parser#hole_cards}.
-	 * @param ctx the parse tree
-	 */
-	void enterHole_cards(ACPC2017Parser.Hole_cardsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ACPC2017Parser#hole_cards}.
-	 * @param ctx the parse tree
-	 */
-	void exitHole_cards(ACPC2017Parser.Hole_cardsContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link ACPC2017Parser#board_cards}.
 	 * @param ctx the parse tree
 	 */
@@ -157,6 +147,16 @@ public interface ACPC2017Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBoard_cards(ACPC2017Parser.Board_cardsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ACPC2017Parser#hole_cards}.
+	 * @param ctx the parse tree
+	 */
+	void enterHole_cards(ACPC2017Parser.Hole_cardsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ACPC2017Parser#hole_cards}.
+	 * @param ctx the parse tree
+	 */
+	void exitHole_cards(ACPC2017Parser.Hole_cardsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ACPC2017Parser#cards}.
 	 * @param ctx the parse tree

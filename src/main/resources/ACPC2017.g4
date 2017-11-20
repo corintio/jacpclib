@@ -40,9 +40,9 @@ playerx_cards : player_card+;
 round_card : CARD;
 roundx_board_cards : round_card*;
 
-hole_cards : playerx_cards? HLINE playerx_cards? (HLINE playerx_cards)?;
+board_cards : roundx_board_cards (SLASH roundx_board_cards)*;
 
-board_cards : (SLASH roundx_board_cards)*;
+hole_cards : (playerx_cards HLINE+) | (HLINE+ playerx_cards HLINE+) | (HLINE+ playerx_cards);
 
 cards : hole_cards board_cards;
 
