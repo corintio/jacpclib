@@ -6,4 +6,4 @@ Basically this does the following:
 * implements a model representing the match state including all required information
 * implements a client being able to encode and send information game information (e.g. player actions) to the acpc server as well as retrieve and decode match state information received from the server
 
-This is currently **work in progress!** So no guaranteed for anything to stay as it is nor work as expected! 
+This is **work in progress!** So no guarantee for anything to stay as it is nor work as you may expect! 
