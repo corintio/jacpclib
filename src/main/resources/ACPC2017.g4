@@ -24,12 +24,21 @@ hand_number : INT;
 
 raise_value : INT;
 
-round_x_betting : (FOLD | CALL | RAISE raise_value?)+;
+action_fold : FOLD;
+action_call : CALL;
+
+action_raise_value : RAISE raise_value;
+action_raise : RAISE;
+
+round_x_betting : (action_fold | action_call | action_raise_value | action_raise)+;
 
 betting : round_x_betting (SLASH round_x_betting?)*;
 
-playerx_cards : (CARD)+;
-roundx_board_cards : (CARD)*;
+player_card : CARD;
+playerx_cards : player_card+;
+
+round_card : CARD;
+roundx_board_cards : round_card*;
 
 hole_cards : playerx_cards? HLINE playerx_cards? (HLINE playerx_cards)?;
 

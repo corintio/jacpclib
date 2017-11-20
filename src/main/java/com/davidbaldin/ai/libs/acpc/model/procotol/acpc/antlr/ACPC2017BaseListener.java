@@ -52,6 +52,54 @@ public class ACPC2017BaseListener implements ACPC2017Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAction_fold(ACPC2017Parser.Action_foldContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAction_fold(ACPC2017Parser.Action_foldContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAction_call(ACPC2017Parser.Action_callContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAction_call(ACPC2017Parser.Action_callContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAction_raise_value(ACPC2017Parser.Action_raise_valueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAction_raise_value(ACPC2017Parser.Action_raise_valueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAction_raise(ACPC2017Parser.Action_raiseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAction_raise(ACPC2017Parser.Action_raiseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRound_x_betting(ACPC2017Parser.Round_x_bettingContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -76,6 +124,18 @@ public class ACPC2017BaseListener implements ACPC2017Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPlayer_card(ACPC2017Parser.Player_cardContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPlayer_card(ACPC2017Parser.Player_cardContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPlayerx_cards(ACPC2017Parser.Playerx_cardsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -83,6 +143,18 @@ public class ACPC2017BaseListener implements ACPC2017Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPlayerx_cards(ACPC2017Parser.Playerx_cardsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRound_card(ACPC2017Parser.Round_cardContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRound_card(ACPC2017Parser.Round_cardContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

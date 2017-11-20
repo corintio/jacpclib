@@ -71,6 +71,10 @@ public enum Card {
         this.id = id;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public static Card fromId(String id) {
         return reverse.get(id);
     }

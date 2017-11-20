@@ -38,6 +38,46 @@ public interface ACPC2017Listener extends ParseTreeListener {
 	 */
 	void exitRaise_value(ACPC2017Parser.Raise_valueContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ACPC2017Parser#action_fold}.
+	 * @param ctx the parse tree
+	 */
+	void enterAction_fold(ACPC2017Parser.Action_foldContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ACPC2017Parser#action_fold}.
+	 * @param ctx the parse tree
+	 */
+	void exitAction_fold(ACPC2017Parser.Action_foldContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ACPC2017Parser#action_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterAction_call(ACPC2017Parser.Action_callContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ACPC2017Parser#action_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitAction_call(ACPC2017Parser.Action_callContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ACPC2017Parser#action_raise_value}.
+	 * @param ctx the parse tree
+	 */
+	void enterAction_raise_value(ACPC2017Parser.Action_raise_valueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ACPC2017Parser#action_raise_value}.
+	 * @param ctx the parse tree
+	 */
+	void exitAction_raise_value(ACPC2017Parser.Action_raise_valueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ACPC2017Parser#action_raise}.
+	 * @param ctx the parse tree
+	 */
+	void enterAction_raise(ACPC2017Parser.Action_raiseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ACPC2017Parser#action_raise}.
+	 * @param ctx the parse tree
+	 */
+	void exitAction_raise(ACPC2017Parser.Action_raiseContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ACPC2017Parser#round_x_betting}.
 	 * @param ctx the parse tree
 	 */
@@ -58,6 +98,16 @@ public interface ACPC2017Listener extends ParseTreeListener {
 	 */
 	void exitBetting(ACPC2017Parser.BettingContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ACPC2017Parser#player_card}.
+	 * @param ctx the parse tree
+	 */
+	void enterPlayer_card(ACPC2017Parser.Player_cardContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ACPC2017Parser#player_card}.
+	 * @param ctx the parse tree
+	 */
+	void exitPlayer_card(ACPC2017Parser.Player_cardContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ACPC2017Parser#playerx_cards}.
 	 * @param ctx the parse tree
 	 */
@@ -67,6 +117,16 @@ public interface ACPC2017Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPlayerx_cards(ACPC2017Parser.Playerx_cardsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ACPC2017Parser#round_card}.
+	 * @param ctx the parse tree
+	 */
+	void enterRound_card(ACPC2017Parser.Round_cardContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ACPC2017Parser#round_card}.
+	 * @param ctx the parse tree
+	 */
+	void exitRound_card(ACPC2017Parser.Round_cardContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ACPC2017Parser#roundx_board_cards}.
 	 * @param ctx the parse tree
