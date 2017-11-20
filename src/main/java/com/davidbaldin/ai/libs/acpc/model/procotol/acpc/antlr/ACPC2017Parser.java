@@ -1,13 +1,10 @@
 // Generated from ACPC2017.g4 by ANTLR 4.7
-package com.davidbaldin.ai.games.poker.client.model.procotol.acpc.antlr;
+package com.davidbaldin.ai.libs.acpc.model.procotol.acpc.antlr;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class ACPC2017Parser extends Parser {

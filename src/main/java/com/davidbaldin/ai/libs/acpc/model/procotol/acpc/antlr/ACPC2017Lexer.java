@@ -1,5 +1,5 @@
 // Generated from ACPC2017.g4 by ANTLR 4.7
-package com.davidbaldin.ai.games.poker.client.model.procotol.acpc.antlr;
+package com.davidbaldin.ai.libs.acpc.model.procotol.acpc.antlr;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

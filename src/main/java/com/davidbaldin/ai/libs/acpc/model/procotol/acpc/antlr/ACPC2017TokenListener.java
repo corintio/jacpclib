@@ -1,7 +1,7 @@
-package com.davidbaldin.ai.games.poker.client.model.procotol.acpc.antlr;
+package com.davidbaldin.ai.libs.acpc.model.procotol.acpc.antlr;
 
-import com.davidbaldin.ai.games.poker.client.model.procotol.acpc.model.MatchState;
-import com.davidbaldin.ai.games.poker.client.model.procotol.acpc.model.ServerResponse;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.MatchState;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.ServerResponse;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.apache.log4j.Logger;
 

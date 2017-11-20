@@ -1,6 +1,6 @@
-package com.davidbaldin.ai.games.poker.client.model.procotol.acpc;
+package com.davidbaldin.ai.libs.acpc.model.procotol.acpc;
 
-import com.davidbaldin.ai.games.poker.client.model.procotol.acpc.model.ServerResponse;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.ServerResponse;
 import org.junit.Test;
 
 /**

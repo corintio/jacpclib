@@ -1,4 +1,4 @@
-package com.davidbaldin.ai.games.poker.client.model.procotol.acpc.model;
+package com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model;
 
 import java.util.HashMap;
 import java.util.Map;

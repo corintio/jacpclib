@@ -1,12 +1,11 @@
-package com.davidbaldin.ai.games.poker.client.model.procotol.acpc;
+package com.davidbaldin.ai.libs.acpc.model.procotol.acpc;
 
-import com.davidbaldin.ai.games.poker.client.model.procotol.acpc.antlr.ACPC2017Lexer;
-import com.davidbaldin.ai.games.poker.client.model.procotol.acpc.antlr.ACPC2017Parser;
-import com.davidbaldin.ai.games.poker.client.model.procotol.acpc.antlr.ACPC2017TokenListener;
-import com.davidbaldin.ai.games.poker.client.model.procotol.acpc.model.ServerResponse;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.antlr.ACPC2017Lexer;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.antlr.ACPC2017Parser;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.antlr.ACPC2017TokenListener;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.ServerResponse;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 /**
