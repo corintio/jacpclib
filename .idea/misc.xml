@@ -38,6 +38,15 @@
       <property name="caretWidth" class="java.lang.Integer" />
     </properties>
   </component>
+  <component name="EclipseCodeFormatter">
+    <option name="defaultSettings" value="true" />
+    <option name="formatOtherFileTypesWithIntelliJ" value="false" />
+    <option name="formatter" value="ECLIPSE" />
+    <option name="id" value="1486561220771" />
+    <option name="name" value="default" />
+    <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../code-formatter/eclipse-formatter.xml" />
+    <option name="selectedJavaProfile" value="Netcentric" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
