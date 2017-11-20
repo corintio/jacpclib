@@ -1,0 +1,15 @@
+CARD=1
+INT=2
+FOLD=3
+CALL=4
+RAISE=5
+COLON=6
+HLINE=7
+SLASH=8
+MATCHSTATE=9
+'f'=3
+'c'=4
+'r'=5
+':'=6
+'|'=7
+'/'=8
