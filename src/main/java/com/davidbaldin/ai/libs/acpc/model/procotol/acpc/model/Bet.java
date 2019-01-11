@@ -1,14 +1,14 @@
 package com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model;
 
-public class Betting {
-    private BettingType type;
+public class Bet {
+    private BetType type;
     private Long value = null;
 
-    public BettingType getType() {
+    public BetType getType() {
         return type;
     }
 
-    public Betting setType(BettingType type) {
+    public Bet setType(BetType type) {
         this.type = type;
         return this;
     }
@@ -17,7 +17,7 @@ public class Betting {
         return value;
     }
 
-    public Betting setValue(Long value) {
+    public Bet setValue(Long value) {
         this.value = value;
         return this;
     }
@@ -28,7 +28,7 @@ public class Betting {
 
     @Override
     public String toString() {
-        return "Betting{\n" +
+        return "Bet{\n" +
                 "\t type = " + type + "\n" +
                 (isNoLimit() ? ("\t value = " + value + "\n") : "") +
                 '}';

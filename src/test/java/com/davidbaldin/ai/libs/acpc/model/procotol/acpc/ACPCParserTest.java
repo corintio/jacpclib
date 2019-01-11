@@ -2,23 +2,33 @@ package com.davidbaldin.ai.libs.acpc.model.procotol.acpc;
 
 import static com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.Card.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
-import org.apache.commons.lang3.tuple.*;
-import org.junit.*;
-import org.junit.experimental.theories.*;
-import org.junit.runner.*;
+import org.apache.commons.lang3.tuple.Pair;
+import org.junit.Assert;
+import org.junit.experimental.theories.DataPoints;
+import org.junit.experimental.theories.Theories;
+import org.junit.experimental.theories.Theory;
+import org.junit.runner.RunWith;
 
-import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.*;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.Bet;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.Card;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.MatchState;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.ServerResponse;
 
-import it.unimi.dsi.fastutil.ints.*;
+import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 
 @RunWith(Theories.class)
 public class ACPCParserTest {
 
     private static String EOF = "";
 
-    public static @DataPoints Pair<String, TestTupl>[] candidates = new Pair[] {
+    public static @DataPoints
+    Pair<String, TestTupl>[] candidates = new Pair[]{
             Pair.of("MATCHSTATE:0:0::TdAs|", new TestTupl().hole(_TD, _AS)),
             Pair.of("MATCHSTATE:0:0:rrc/:TdAs|/2c8c3h",
                     new TestTupl().position(0).hand(0).hole(_TD, _AS)
@@ -118,24 +128,21 @@ public class ACPCParserTest {
                             .cards(1, _TD, _2H)
                             .cards(2, _TS, _KD, _7H)
                             .cards(3, _KH)
-                            .cards(4, _6D)) };
+                            .cards(4, _6D))};
 
     @Theory
     public void testDecoding(Pair<String, TestTupl> testTupl) {
         ACPCParser parser = new ACPCParser();
         ServerResponse response = parser.parseServerResponse(testTupl.getLeft());
         System.out.println(testTupl.getLeft());
-        System.out.println("=>");
+        System.out.println(" => ");
         System.out.println(response.getMatchState());
-        System.out.println();
-
         TestTupl testData = testTupl.getRight();
         assertPosition(testData, response.getMatchState());
         assertHandNumber(testData, response.getMatchState());
         assertHole(testData, response.getMatchState());
         assertRoundCards(testData, response.getMatchState());
         assertRoundBets(testData, response.getMatchState());
-
     }
 
     private void assertPosition(TestTupl testData, MatchState matchState) {
@@ -185,7 +192,7 @@ public class ACPCParserTest {
         int position;
         int hand;
         Int2ObjectArrayMap<List<Card>> cardsPerRound = new Int2ObjectArrayMap<>();
-        Int2ObjectArrayMap<List<Betting>> betsPerRound = new Int2ObjectArrayMap<>();
+        Int2ObjectArrayMap<List<Bet>> betsPerRound = new Int2ObjectArrayMap<>();
         List<Card> holeCards = new ArrayList<>();
 
         private int currentCardRound = 0;
@@ -196,8 +203,8 @@ public class ACPCParserTest {
             return this;
         }
 
-        public TestTupl bets(Integer round, Betting... bettings) {
-            betsPerRound.put(round, Arrays.asList(bettings));
+        public TestTupl bets(Integer round, Bet... bets) {
+            betsPerRound.put(round, Arrays.asList(bets));
             return this;
         }
 

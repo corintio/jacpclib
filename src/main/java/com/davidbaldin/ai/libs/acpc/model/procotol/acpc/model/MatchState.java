@@ -1,18 +1,24 @@
 package com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
+
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
+import it.unimi.dsi.fastutil.ints.IntIterator;
 
 public class MatchState {
     private int position = 0;
     private int handNumber = 0;
     /**
-     * Bettings for each round where {@link List#indexOf(Object)} is the round.
+     * Bets for each round where {@link List#indexOf(Object)} is the round.
      */
-    private Int2ObjectArrayMap<List<Betting>> bettings = new Int2ObjectArrayMap<>();
+    private Int2ObjectArrayMap<List<Bet>> bets = new Int2ObjectArrayMap<>();
 
     /**
      * A hole card, or down card, is a card dealt face down that only the player himself can see.
@@ -39,13 +45,13 @@ public class MatchState {
         this.position = position;
     }
 
-    public void addBetting(int round, Betting betting) {
-        List<Betting> bettings = this.bettings.get(round);
-        if (Objects.isNull(bettings)) {
-            bettings = new ArrayList<>();
+    public void addBetting(int round, Bet bet) {
+        List<Bet> bets = this.bets.get(round);
+        if (Objects.isNull(bets)) {
+            bets = new ArrayList<>();
         }
-        bettings.add(betting);
-        this.bettings.put(round, bettings);
+        bets.add(bet);
+        this.bets.put(round, bets);
     }
 
     public void addHoleCard(Card card) {
@@ -61,12 +67,12 @@ public class MatchState {
         this.boardCards.put(round, cards);
     }
 
-    public Int2ObjectArrayMap<List<Betting>> getBettings() {
-        return bettings;
+    public Int2ObjectArrayMap<List<Bet>> getBets() {
+        return bets;
     }
 
-    public List<Betting> getBettings(int round) {
-        return bettings.get(round);
+    public List<Bet> getBets(int round) {
+        return bets.get(round);
     }
 
     public Int2ObjectArrayMap<List<Card>> getBoardCards() {
@@ -83,12 +89,83 @@ public class MatchState {
 
     @Override
     public String toString() {
+
+
         return "MatchState{\n" +
-                "\tposition = " + position + ",\n" +
-                "\thandNumber = " + handNumber + ",\n" +
-                "\tbettings = " + bettings + ",\n" +
-                "\tholeCards = " + holeCards + ",\n" +
-                "\tboardCards = " + boardCards + "\n" +
+                "\tposition: " + position + ",\n" +
+                "\thandNumber: " + handNumber + ",\n" +
+                "\tbets: " + getBetsAsString() + ",\n" +
+                "\thole: " + holeCards + ",\n" +
+                "\tboard: " + getBoardAsString() + "\n" +
                 '}';
+    }
+
+
+    private String getBoardAsString() {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+
+        pw.print("{");
+        if (boardCards != null && !boardCards.isEmpty()) {
+            IntIterator rountIter = boardCards.keySet().iterator();
+            Integer round = null;
+            while (rountIter.hasNext() && (round = rountIter.next()) != null) {
+                pw.print("\n\t\t" + round + ":");
+                List<Card> cardsPerRound = this.boardCards.get(round);
+                pw.print("[");
+                if (cardsPerRound != null && !cardsPerRound.isEmpty()) {
+                    pw.print(StringUtils.join(cardsPerRound, ", "));
+                }
+                pw.print("]");
+                if (rountIter.hasNext()) {
+                    pw.print(",");
+                }
+            }
+        }
+        pw.print("}");
+
+        return sw.toString();
+    }
+
+    private String getBetsAsString() {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+
+        pw.print("{");
+        if (bets != null && !bets.isEmpty()) {
+            IntIterator roundIter = bets.keySet().iterator();
+            Integer round = null;
+            while (roundIter.hasNext() && (round = roundIter.next()) != null) {
+                pw.print("\n\t\t" + round + ":");
+                List<Bet> betsPerRound = this.bets.get(round);
+                pw.print("[");
+                if (betsPerRound != null && !betsPerRound.isEmpty()) {
+                    Bet bet;
+                    Iterator<Bet> iter = betsPerRound.iterator();
+                    while (iter.hasNext() && (bet = iter.next()) != null) {
+                        Long value = bet.getValue();
+                        if (value != null) {
+                            pw.print("{");
+                        }
+                        pw.print(bet.getType());
+                        if (value != null) {
+                            pw.print(", ");
+                            pw.print(value);
+                            pw.print("}");
+                        }
+                        if (iter.hasNext()) {
+                            pw.print(", ");
+                        }
+                    }
+                }
+                pw.print("]");
+                if (roundIter.hasNext()) {
+                    pw.print(",");
+                }
+            }
+        }
+        pw.print("}");
+
+        return sw.toString();
     }
 }

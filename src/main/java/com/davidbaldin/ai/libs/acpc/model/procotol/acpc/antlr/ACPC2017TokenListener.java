@@ -8,8 +8,8 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.apache.log4j.Logger;
 
-import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.Betting;
-import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.BettingType;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.Bet;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.BetType;
 import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.Card;
 import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.MatchState;
 import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.ServerResponse;
@@ -52,29 +52,29 @@ public class ACPC2017TokenListener extends ACPC2017BaseListener {
     }
 
     private void addBetting(ParserRuleContext ctx) {
-        Optional.ofNullable(ctx).map(ParserRuleContext::getStop).map(Token::getText).map(BettingType::fromId)
-                .ifPresent(bettingType -> {
-                    LOGGER.info("round[" + currentBetRound + "] action : '" + bettingType + "'");
-                    serverResponse.getMatchState().addBetting(currentBetRound, new Betting().setType(bettingType));
+        Optional.ofNullable(ctx).map(ParserRuleContext::getStop).map(Token::getText).map(BetType::fromId)
+                .ifPresent(betType -> {
+                    LOGGER.info("round[" + currentBetRound + "] action : '" + betType + "'");
+                    serverResponse.getMatchState().addBetting(currentBetRound, new Bet().setType(betType));
                 });
     }
 
     @Override
     public void exitAction_raise_value(ACPC2017Parser.Action_raise_valueContext ctx) {
-        Optional.ofNullable(ctx).map(ACPC2017Parser.Action_raise_valueContext::RAISE).map(TerminalNode::getText).map(BettingType::fromId)
-                .ifPresent(bettingType -> {
-                    LOGGER.info("round[" + currentBetRound + "] action : '" + bettingType + "'");
-                    final Betting betting = new Betting().setType(bettingType);
+        Optional.ofNullable(ctx).map(ACPC2017Parser.Action_raise_valueContext::RAISE).map(TerminalNode::getText).map(BetType::fromId)
+                .ifPresent(betType -> {
+                    LOGGER.info("round[" + currentBetRound + "] action : '" + betType + "'");
+                    final Bet bet = new Bet().setType(betType);
                     Optional.ofNullable(ctx.raise_value()).map(RuleContext::getText).ifPresent(raiseValueText -> {
                         try {
                             long raiseValue = Long.parseUnsignedLong(raiseValueText);
-                            betting.setValue(raiseValue);
+                            bet.setValue(raiseValue);
                             LOGGER.info("raise value : '" + raiseValue + "'");
                         } catch (NumberFormatException e) {
 
                         }
                     });
-                    serverResponse.getMatchState().addBetting(currentBetRound, betting);
+                    serverResponse.getMatchState().addBetting(currentBetRound, bet);
                 });
     }
 

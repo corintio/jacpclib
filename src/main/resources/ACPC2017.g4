@@ -32,7 +32,7 @@ action_raise : RAISE;
 
 round_x_betting : (action_fold | action_call | action_raise_value | action_raise)+;
 
-betting : round_x_betting (SLASH round_x_betting?)*;
+bet : round_x_betting (SLASH round_x_betting?)*;
 
 player_card : CARD;
 playerx_cards : player_card+;
@@ -47,7 +47,7 @@ hole_cards : (playerx_cards HLINE+) | (HLINE+ playerx_cards HLINE+) | (HLINE+ pl
 cards : hole_cards board_cards;
 
 // MATCH STATE
-match_state : MATCHSTATE position COLON hand_number COLON betting? COLON cards;
+match_state : MATCHSTATE position COLON hand_number COLON bet? COLON cards;
 
 // RESPONSES
 

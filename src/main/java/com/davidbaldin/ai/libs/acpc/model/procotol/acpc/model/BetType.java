@@ -4,24 +4,24 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public enum BettingType {
+public enum BetType {
     FOLD("f"),
     CALL("c"),
     RAISE("r");
 
-    private static Map<String, BettingType> reverse = new HashMap<>();
+    private static Map<String, BetType> reverse = new HashMap<>();
 
     static {
-        Stream.of(values()).forEach(bettingType -> reverse.put(bettingType.id, bettingType));
+        Stream.of(values()).forEach(betType -> reverse.put(betType.id, betType));
     }
 
     private final String id;
 
-    BettingType(String id) {
+    BetType(String id) {
         this.id = id;
     }
 
-    public static BettingType fromId(String id) {
+    public static BetType fromId(String id) {
         return reverse.get(id);
     }
 
