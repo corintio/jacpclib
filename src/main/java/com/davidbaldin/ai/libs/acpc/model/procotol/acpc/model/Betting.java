@@ -8,13 +8,13 @@ public class Betting {
         return type;
     }
 
-    public Long getValue() {
-        return value;
-    }
-
     public Betting setType(BettingType type) {
         this.type = type;
         return this;
+    }
+
+    public Long getValue() {
+        return value;
     }
 
     public Betting setValue(Long value) {
@@ -28,9 +28,9 @@ public class Betting {
 
     @Override
     public String toString() {
-        return "Betting{" +
-                "type=" + type +
-                (isNoLimit() ? (", value=" + value) : "") +
+        return "Betting{\n" +
+                "\t type = " + type + "\n" +
+                (isNoLimit() ? ("\t value = " + value + "\n") : "") +
                 '}';
     }
 }

@@ -1,19 +1,26 @@
 package com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 
 public class MatchState {
     private int position = 0;
     private int handNumber = 0;
     /**
-     * {@link List#indexOf(Object)} is the round
+     * Bettings for each round where {@link List#indexOf(Object)} is the round.
      */
     private Int2ObjectArrayMap<List<Betting>> bettings = new Int2ObjectArrayMap<>();
+
+    /**
+     * A hole card, or down card, is a card dealt face down that only the player himself can see.
+     * <p>
+     * Unlike community cards, or community cards, which are dealt face down to all players.
+     */
     private List<Card> holeCards = new ArrayList<>();
+
     private Int2ObjectArrayMap<List<Card>> boardCards = new Int2ObjectArrayMap<>();
 
     public int getHandNumber() {
@@ -76,12 +83,12 @@ public class MatchState {
 
     @Override
     public String toString() {
-        return "MatchState{" +
-                "position=" + position +
-                ", handNumber=" + handNumber +
-                ", bettings=" + bettings +
-                ", holeCards=" + holeCards +
-                ", boardCards=" + boardCards +
+        return "MatchState{\n" +
+                "\tposition = " + position + ",\n" +
+                "\thandNumber = " + handNumber + ",\n" +
+                "\tbettings = " + bettings + ",\n" +
+                "\tholeCards = " + holeCards + ",\n" +
+                "\tboardCards = " + boardCards + "\n" +
                 '}';
     }
 }

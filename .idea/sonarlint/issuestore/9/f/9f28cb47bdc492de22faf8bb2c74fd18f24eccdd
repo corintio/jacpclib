@@ -1,0 +1,13 @@
+
+jsquid:S3008"NRename this field "EOF" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âì‚äùÿÿÿÿ
+™squid:S1186¡"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Üü¯
+Isquid:S1602»",Remove useless curly braces around statement(Ÿ¸É©ÿÿÿÿÿ
+[squid:CallToDeprecatedMethod¶"+Remove this use of "put"; it is deprecated.(Èì×‡8‘¤çƒ-
+Qsquid:S1068­"4Remove this unused "currentCardRound" private field.(ŠÖ­‰ùÿÿÿÿ
+`squid:CallToDeprecatedMethod±"+Remove this use of "put"; it is deprecated.(Ğğı—ùÿÿÿÿ8‘¤çƒ-
+>squid:S1172¡"&Remove these unused method parameters.(Üü¯
+osquid:S00117»"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ¸É©ÿÿÿÿÿ
+4squid:S2386"Make this member "protected".(§ŒÎğ
+Nsquid:S1068®"6Remove this unused "currentActionRound" private field.(–±Ûˆ
+Csquid:S1068"'Remove this unused "EOF" private field.(âì‚äùÿÿÿÿ
+Gsquid:S1444"0Make this "public static candidates" field final(§ŒÎğ

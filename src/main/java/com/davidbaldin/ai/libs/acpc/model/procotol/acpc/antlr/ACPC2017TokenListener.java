@@ -1,13 +1,18 @@
 package com.davidbaldin.ai.libs.acpc.model.procotol.acpc.antlr;
 
-import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.*;
+import java.util.Optional;
+
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.apache.log4j.Logger;
 
-import java.util.Optional;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.Betting;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.BettingType;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.Card;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.MatchState;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.ServerResponse;
 
 public class ACPC2017TokenListener extends ACPC2017BaseListener {
 
@@ -91,7 +96,7 @@ public class ACPC2017TokenListener extends ACPC2017BaseListener {
     public void exitRound_card(ACPC2017Parser.Round_cardContext ctx) {
         Optional.ofNullable(ctx).map(ParserRuleContext::getStop).map(Token::getText).map(Card::fromId).ifPresent(card -> {
             LOGGER.info("round[" + currentBetRound + "] card: '" + card + "'");
-            this.serverResponse.getMatchState().addBoardCard(currentBoardCardRound,card);
+            this.serverResponse.getMatchState().addBoardCard(currentBoardCardRound, card);
 
         });
     }

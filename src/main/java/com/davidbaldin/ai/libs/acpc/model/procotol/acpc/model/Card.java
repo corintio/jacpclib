@@ -59,23 +59,23 @@ public enum Card {
     _AD("Ad"),
     _AC("Ac");
 
-    private final String id;
-
     private static Map<String, Card> reverse = new HashMap<>();
 
     static {
         Stream.of(values()).forEach(type -> reverse.put(type.id, type));
     }
 
+    private final String id;
+
     Card(String id) {
         this.id = id;
     }
 
-    public String getId() {
-        return id;
-    }
-
     public static Card fromId(String id) {
         return reverse.get(id);
+    }
+
+    public String getId() {
+        return id;
     }
 }

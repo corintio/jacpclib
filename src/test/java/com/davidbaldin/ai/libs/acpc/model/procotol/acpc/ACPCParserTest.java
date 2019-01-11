@@ -1,24 +1,17 @@
 package com.davidbaldin.ai.libs.acpc.model.procotol.acpc;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import static com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.Card.*;
 
-import org.apache.commons.lang3.tuple.Pair;
-import org.junit.Assert;
-import org.junit.experimental.theories.DataPoints;
-import org.junit.experimental.theories.Theories;
-import org.junit.experimental.theories.Theory;
-import org.junit.runner.RunWith;
+import java.util.*;
 
-import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.Betting;
-import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.Card;
-import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.MatchState;
-import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.ServerResponse;
+import org.apache.commons.lang3.tuple.*;
+import org.junit.*;
+import org.junit.experimental.theories.*;
+import org.junit.runner.*;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
+import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.*;
+
+import it.unimi.dsi.fastutil.ints.*;
 
 @RunWith(Theories.class)
 public class ACPCParserTest {
@@ -26,93 +19,123 @@ public class ACPCParserTest {
     private static String EOF = "";
 
     public static @DataPoints Pair<String, TestTupl>[] candidates = new Pair[] {
-            Pair.of("MATCHSTATE:0:0::TdAs|", new TestTupl().hole(Card._TD, Card._AS)),
-            Pair.of("MATCHSTATE:0:0:r:TdAs|", new TestTupl().position(0).hand(0).hole(Card._TD, Card._AS)),
-            Pair.of("MATCHSTATE:0:0:rr:TdAs|", new TestTupl().position(0).hand(0).hole(Card._TD, Card._AS)),
+            Pair.of("MATCHSTATE:0:0::TdAs|", new TestTupl().hole(_TD, _AS)),
             Pair.of("MATCHSTATE:0:0:rrc/:TdAs|/2c8c3h",
-                    new TestTupl().position(0).hand(0).hole(Card._TD, Card._AS).cards(1, Card._2C, Card._8C, Card._3H)),
-            Pair.of("MATCHSTATE:0:0:rrc/r:TdAs|/2c8c3h", new TestTupl().position(0).hand(0).hole(Card._TD, Card._AS).cards(1, Card._2C, Card._8C, Card._3H)),
-            Pair.of("MATCHSTATE:0:0:rrc/rc/:TdAs|/2c8c3h/9c", new TestTupl().position(0).hand(0).hole(Card._TD, Card._AS).cards(1, Card._2C, Card._8C, Card._3H)),
-            Pair.of("MATCHSTATE:0:0:rrc/rc/c:TdAs|/2c8c3h/9c", new TestTupl().position(0).hand(0).hole(Card._TD, Card._AS).cards(1, Card._2C, Card._8C, Card._3H)),
-            Pair.of("MATCHSTATE:0:0:rrc/rc/cr:TdAs|/2c8c3h/9c", new TestTupl().position(0).hand(0).hole(Card._TD, Card._AS).cards(1, Card._2C, Card._8C, Card._3H)),
-            Pair.of("MATCHSTATE:0:0:rrc/rc/crc/:TdAs|/2c8c3h/9c/Kh", new TestTupl().position(0).hand(0).hole(Card._TD, Card._AS).cards(1, Card._2C, Card._8C, Card._3H)),
-            Pair.of("MATCHSTATE:0:0:rrc/rc/crc/c:TdAs|/2c8c3h/9c/Kh", new TestTupl().position(0).hand(0).hole(Card._TD, Card._AS).cards(1, Card._2C, Card._8C, Card._3H)),
-            Pair.of("MATCHSTATE:0:0:rrc/rc/crc/cr:TdAs|/2c8c3h/9c/Kh", new TestTupl().position(0).hand(0).hole(Card._TD, Card._AS).cards(1, Card._2C, Card._8C, Card._3H)),
-            Pair.of("MATCHSTATE:0:0:rrc/rc/crc/crc:TdAs|8hTc/2c8c3h/9c/Kh", new TestTupl().position(0).hand(0).hole(Card._TD, Card._AS).cards(1, Card._2C, Card._8C, Card._3H)),
-            Pair.of("MATCHSTATE:1:1::|Qd7c", new TestTupl().position(1).hand(1).hole(Card._QD, Card._7C)),
-            Pair.of("MATCHSTATE:1:1:r:|Qd7c", new TestTupl().position(1).hand(1).hole(Card._QD, Card._7C)),
-            Pair.of("MATCHSTATE:1:1:rr:|Qd7c", new TestTupl().position(1).hand(1).hole(Card._QD, Card._7C)),
-            Pair.of("MATCHSTATE:1:1:rrc/:|Qd7c/2h8h5c", new TestTupl().position(1).hand(1).hole(Card._QD, Card._7C)),
-            Pair.of("MATCHSTATE:1:1:rrc/r:|Qd7c/2h8h5c", new TestTupl().position(1).hand(1).hole(Card._QD, Card._7C)),
-            Pair.of("MATCHSTATE:1:1:rrc/rc/:|Qd7c/2h8h5c/Th", new TestTupl().position(1).hand(1).hole(Card._QD, Card._7C)),
-            Pair.of("MATCHSTATE:1:1:rrc/rc/r:|Qd7c/2h8h5c/Th", new TestTupl().position(1).hand(1).hole(Card._QD, Card._7C)),
-            Pair.of("MATCHSTATE:1:1:rrc/rc/rf:|Qd7c/2h8h5c/Th", new TestTupl().position(1).hand(1).hole(Card._QD, Card._7C)),
-            Pair.of("MATCHSTATE:0:2::9d7s|", new TestTupl().position(0).hand(2).hole(Card._9D, Card._7S)),
-            Pair.of("MATCHSTATE:0:2:r:9d7s|", new TestTupl().position(0).hand(2).hole(Card._9D, Card._7S)),
-            Pair.of("MATCHSTATE:0:2:rc/:9d7s|/5d2cJc", new TestTupl().position(0).hand(2).hole(Card._9D, Card._7S)),
-            Pair.of("MATCHSTATE:0:2:rc/c:9d7s|/5d2cJc", new TestTupl().position(0).hand(2).hole(Card._9D, Card._7S)),
-            Pair.of("MATCHSTATE:0:2:rc/cc/:9d7s|/5d2cJc/3d", new TestTupl().position(0).hand(2).hole(Card._9D, Card._7S)),
-            Pair.of("MATCHSTATE:0:2:rc/cc/c:9d7s|/5d2cJc/3d", new TestTupl().position(0).hand(2).hole(Card._9D, Card._7S)),
-            Pair.of("MATCHSTATE:0:2:rc/cc/cr:9d7s|/5d2cJc/3d", new TestTupl().position(0).hand(2).hole(Card._9D, Card._7S)),
-            Pair.of("MATCHSTATE:0:2:rc/cc/crf:9d7s|/5d2cJc/3d", new TestTupl().position(0).hand(2).hole(Card._9D, Card._7S)),
-            Pair.of("MATCHSTATE:0:30::9s8h|", new TestTupl().position(0).hand(30).hole(Card._9S, Card._8H)),
-            Pair.of("MATCHSTATE:0:30:c:9s8h|", new TestTupl().position(0).hand(30).hole(Card._9S, Card._8H)),
-            Pair.of("MATCHSTATE:0:30:cc/:9s8h|/8c8d5c", new TestTupl().position(0).hand(30).hole(Card._9S, Card._8H)),
-            Pair.of("MATCHSTATE:0:30:cc/r250:9s8h|/8c8d5c", new TestTupl().position(0).hand(30).hole(Card._9S, Card._8H)),
-            Pair.of("MATCHSTATE:0:30:cc/r250c/:9s8h|/8c8d5c/6s", new TestTupl().position(0).hand(30).hole(Card._9S, Card._8H)),
-            Pair.of("MATCHSTATE:0:30:cc/r250c/r500:9s8h|/8c8d5c/6s", new TestTupl().position(0).hand(30).hole(Card._9S, Card._8H)),
-            Pair.of("MATCHSTATE:0:30:cc/r250c/r500c/:9s8h|/8c8d5c/6s/2d", new TestTupl().position(0).hand(30).hole(Card._9S, Card._8H)),
+                    new TestTupl().position(0).hand(0).hole(_TD, _AS)
+                            .cards(1, _2C, _8C, _3H)),
+            Pair.of("MATCHSTATE:0:0:rrc/r:TdAs|/2c8c3h",
+                    new TestTupl().position(0).hand(0).hole(_TD, _AS)
+                            .cards(1, _2C, _8C, _3H)),
+            Pair.of("MATCHSTATE:0:0:rrc/rc/:TdAs|/2c8c3h/9c",
+                    new TestTupl().position(0).hand(0)
+                            .hole(_TD, _AS)
+                            .cards(2, _2C, _8C, _3H)
+                            .cards(3, _9C)),
+            Pair.of("MATCHSTATE:0:0:rrc/rc/c:TdAs|/2c8c3h/9c",
+                    new TestTupl().position(0)
+                            .hand(0)
+                            .hole(_TD, _AS)
+                            .cards(2, _2C, _8C, _3H)
+                            .cards(3, _9C)),
+            Pair.of("MATCHSTATE:0:0:rrc/rc/cr:TdAs|/2c8c3h/9c",
+                    new TestTupl().position(0).hand(0)
+                            .hole(_TD, _AS)
+                            .cards(2, _2C, _8C, _3H)
+                            .cards(3, _9C)),
+            Pair.of("MATCHSTATE:0:0:rrc/rc/crc/:TdAs|/2c8c3h/9c/Kh",
+                    new TestTupl().position(0).hand(0)
+                            .hole(_TD, _AS)
+                            .cards(2, _2C, _8C, _3H)
+                            .cards(3, _9C)
+                            .cards(4, _KH)),
+            Pair.of("MATCHSTATE:0:0:rrc/rc/crc/c:TdAs|/2c8c3h/9c/Kh",
+                    new TestTupl().position(0).hand(0)
+                            .hole(_TD, _AS)
+                            .cards(2, _2C, _8C, _3H)
+                            .cards(3, _9C)
+                            .cards(4, _KH)),
+            Pair.of("MATCHSTATE:0:0:rrc/rc/crc/cr:TdAs|/2c8c3h/9c/Kh",
+                    new TestTupl().position(0).hand(0)
+                            .hole(_TD, _AS)
+                            .cards(2, _2C, _8C, _3H)
+                            .cards(3, _9C)
+                            .cards(4, _KH)),
+            Pair.of("MATCHSTATE:0:0:rrc/rc/crc/crc:TdAs|8hTc/2c8c3h/9c/Kh",
+                    new TestTupl().position(0).hand(0)
+                            .hole(_TD, _AS)
+                            .cards(1, _8H, _TC)
+                            .cards(2, _2C, _8C, _3H)
+                            .cards(3, _9C)
+                            .cards(4, _KH)),
+            Pair.of("MATCHSTATE:1:1::|Qd7c", new TestTupl().position(1).hand(1).hole(_QD, _7C)),
+            Pair.of("MATCHSTATE:1:1:rrc/rc/rf:|Qd7c/2h8h5c/Th", new TestTupl().position(1).hand(1)
+                    .hole(_QD, _7C)
+                    .cards(2, _2H, _8H, _5C)
+                    .cards(3, _TH)),
+            Pair.of("MATCHSTATE:0:2::9d7s|", new TestTupl().position(0).hand(2).hole(_9D, _7S)),
+            Pair.of("MATCHSTATE:0:2:rc/cc/crf:9d7s|/5d2cJc/3d", new TestTupl().position(0).hand(2).hole(_9D, _7S)
+                    .cards(2, _5D, _2C, _JC)
+                    .cards(2, _3D)),
+            Pair.of("MATCHSTATE:0:30::9s8h|", new TestTupl().position(0).hand(30).hole(_9S, _8H)),
+            Pair.of("MATCHSTATE:0:30:cc/r250c/r500c/:9s8h|/8c8d5c/6s/2d", new TestTupl().position(0).hand(30)
+                    .hole(_9S, _8H)
+                    .cards(2, _8C, _8D, _5C)
+                    .cards(3, _6S)
+                    .cards(4, _2D)),
             Pair.of("MATCHSTATE:0:30:cc/r250c/r500c/r1250:9s8h|/8c8d5c/6s/2d",
-                    new TestTupl().position(0).hand(30).hole(Card._9S, Card._8H)),
+                    new TestTupl().position(0).hand(30)
+                            .hole(_9S, _8H)
+                            .cards(2, _8C, _8D, _5C)
+                            .cards(3, _6S)
+                            .cards(4, _2D)),
             Pair.of("MATCHSTATE:0:30:cc/r250c/r500c/r1250c:9s8h|9c6h/8c8d5c/6s/2d",
-                    new TestTupl().position(0).hand(30).hole(Card._9S, Card._8H)),
-            Pair.of("MATCHSTATE:1:31::|JdTc", new TestTupl().position(1).hand(31).hole(Card._JD, Card._TC)),
-            Pair.of("MATCHSTATE:1:31:r300:|JdTc", new TestTupl().position(1).hand(31).hole(Card._JD, Card._TC)),
-            Pair.of("MATCHSTATE:1:31:r300r900:|JdTc", new TestTupl().position(1).hand(31).hole(Card._JD, Card._TC)),
-            Pair.of("MATCHSTATE:1:31:r300r900c/:|JdTc/6dJc9c", new TestTupl().position(1).hand(31).hole(Card._JD, Card._TC)),
-            Pair.of("MATCHSTATE:1:31:r300r900c/r1800:|JdTc/6dJc9c", new TestTupl().position(1).hand(31).hole(Card._JD, Card._TC)),
-            Pair.of("MATCHSTATE:1:31:r300r900c/r1800r3600:|JdTc/6dJc9c", new TestTupl().position(1).hand(31).hole(Card._JD, Card._TC)),
-            Pair.of("MATCHSTATE:1:31:r300r900c/r1800r3600r9000:|JdTc/6dJc9c", new TestTupl().position(1).hand(31).hole(Card._JD, Card._TC)),
-            Pair.of("MATCHSTATE:1:31:r300r900c/r1800r3600r9000c/:|JdTc/6dJc9c/Kh",
-                    new TestTupl().position(1).hand(31).hole(Card._JD, Card._TC)),
-            Pair.of("MATCHSTATE:1:31:r300r900c/r1800r3600r9000c/r20000:|JdTc/6dJc9c/Kh",
-                    new TestTupl().position(1).hand(31).hole(Card._JD, Card._TC)),
+                    new TestTupl()
+                            .position(0)
+                            .hand(30)
+                            .hole(_9S, _8H)
+                            .cards(1, _9C, _6H)
+                            .cards(2, _8C, _8D, _5C)
+                            .cards(3, _6S)
+                            .cards(4, _2D)),
+            Pair.of("MATCHSTATE:1:31::|JdTc", new TestTupl().position(1).hand(31).hole(_JD, _TC)),
             Pair.of("MATCHSTATE:1:31:r300r900c/r1800r3600r9000c/r20000c/:KsJs|JdTc/6dJc9c/Kh/Qc",
-                    new TestTupl().position(1).hand(31).hole(Card._KS, Card._JS)),
-            Pair.of("MATCHSTATE:2:55::||AsTs", new TestTupl().position(2).hand(55).hole(Card._AS, Card._TS)),
-            Pair.of("MATCHSTATE:2:55:r:||AsTs", new TestTupl().position(2).hand(55).hole(Card._AS, Card._TS)),
-            Pair.of("MATCHSTATE:2:55:rc:||AsTs", new TestTupl().position(2).hand(55).hole(Card._AS, Card._TS)),
-            Pair.of("MATCHSTATE:2:55:rcc/:||AsTs/4cJh8h", new TestTupl().position(2).hand(55).hole(Card._AS, Card._TS)),
-            Pair.of("MATCHSTATE:2:55:rcc/r:||AsTs/4cJh8h", new TestTupl().position(2).hand(55).hole(Card._AS, Card._TS)),
-            Pair.of("MATCHSTATE:2:55:rcc/rf:||AsTs/4cJh8h", new TestTupl().position(2).hand(55).hole(Card._AS, Card._TS)),
-            Pair.of("MATCHSTATE:2:55:rcc/rfc/:||AsTs/4cJh8h/Kd", new TestTupl().position(2).hand(55).hole(Card._AS, Card._TS)),
-            Pair.of("MATCHSTATE:2:55:rcc/rfc/r:||AsTs/4cJh8h/Kd", new TestTupl().position(2).hand(55).hole(Card._AS, Card._TS)),
-            Pair.of("MATCHSTATE:2:55:rcc/rfc/rc/:||AsTs/4cJh8h/Kd/8c", new TestTupl().position(2).hand(55).hole(Card._AS, Card._TS)),
-            Pair.of("MATCHSTATE:2:55:rcc/rfc/rc/r:||AsTs/4cJh8h/Kd/8c", new TestTupl().position(2).hand(55).hole(Card._AS, Card._TS)),
-            Pair.of("MATCHSTATE:2:55:rcc/rfc/rc/rf:||AsTs/4cJh8h/Kd/8c", new TestTupl().position(2).hand(55).hole(Card._AS, Card._TS)),
-            Pair.of("MATCHSTATE:0:90::Ad6h||", new TestTupl().position(0).hand(90).hole(Card._AD, Card._6H)),
-            Pair.of("MATCHSTATE:0:90:c:Ad6h||", new TestTupl().position(0).hand(90).hole(Card._AD, Card._6H)),
-            Pair.of("MATCHSTATE:0:90:cr:Ad6h||", new TestTupl().position(0).hand(90).hole(Card._AD, Card._6H)),
-            Pair.of("MATCHSTATE:0:90:crf:Ad6h||", new TestTupl().position(0).hand(90).hole(Card._AD, Card._6H)),
-            Pair.of("MATCHSTATE:0:90:crfc/:Ad6h||/TsKd7h", new TestTupl().position(0).hand(90).hole(Card._AD, Card._6H)),
-            Pair.of("MATCHSTATE:0:90:crfc/r:Ad6h||/TsKd7h", new TestTupl().position(0).hand(90).hole(Card._AD, Card._6H)),
-            Pair.of("MATCHSTATE:0:90:crfc/rc/:Ad6h||/TsKd7h/Kh", new TestTupl().position(0).hand(90).hole(Card._AD, Card._6H)),
-            Pair.of("MATCHSTATE:0:90:crfc/rc/r:Ad6h||/TsKd7h/Kh", new TestTupl().position(0).hand(90).hole(Card._AD, Card._6H)),
-            Pair.of("MATCHSTATE:0:90:crfc/rc/rc/:Ad6h||/TsKd7h/Kh/6d", new TestTupl().position(0).hand(90).hole(Card._AD, Card._6H)),
-            Pair.of("MATCHSTATE:0:90:crfc/rc/rc/r:Ad6h||/TsKd7h/Kh/6d", new TestTupl().position(0).hand(90).hole(Card._AD, Card._6H)),
+                    new TestTupl()
+                            .position(1)
+                            .hand(31)
+                            .hole(_KS, _JS)
+                            .cards(1, _JD, _TC)
+                            .cards(2, _6D, _JC, _9C)
+                            .cards(3, _KH)
+                            .cards(4, _QC)),
+            Pair.of("MATCHSTATE:2:55::||AsTs", new TestTupl().position(2).hand(55).hole(_AS, _TS)),
+            Pair.of("MATCHSTATE:2:55:rcc/rfc/rc/rf:||AsTs/4cJh8h/Kd/8c", new TestTupl().position(2).hand(55).hole(_AS, _TS)
+                    .cards(2, _4C, _JH, _8H)
+                    .cards(3, _KD)
+                    .cards(4, _8C)),
+            Pair.of("MATCHSTATE:0:90::Ad6h||", new TestTupl().position(0).hand(90).hole(_AD, _6H)),
             Pair.of("MATCHSTATE:0:90:crfc/rc/rc/rc:Ad6h||Td2h/TsKd7h/Kh/6d",
-                    new TestTupl().position(0).hand(90).hole(Card._AD, Card._6H)) };
+                    new TestTupl().position(0).hand(90).hole(_AD, _6H)
+                            .cards(1, _TD, _2H)
+                            .cards(2, _TS, _KD, _7H)
+                            .cards(3, _KH)
+                            .cards(4, _6D)) };
 
     @Theory
     public void testDecoding(Pair<String, TestTupl> testTupl) {
         ACPCParser parser = new ACPCParser();
         ServerResponse response = parser.parseServerResponse(testTupl.getLeft());
+        System.out.println(testTupl.getLeft());
+        System.out.println("=>");
+        System.out.println(response.getMatchState());
+        System.out.println();
+
         TestTupl testData = testTupl.getRight();
         assertPosition(testData, response.getMatchState());
         assertHandNumber(testData, response.getMatchState());
         assertHole(testData, response.getMatchState());
         assertRoundCards(testData, response.getMatchState());
         assertRoundBets(testData, response.getMatchState());
+
     }
 
     private void assertPosition(TestTupl testData, MatchState matchState) {
@@ -135,9 +158,12 @@ public class ACPCParserTest {
             int testCardsRoundSize = Optional.ofNullable(testData.cardsPerRound.get(round)).map(List::size).orElse(0);
             int actualCardsRoundSize = Optional.ofNullable(matchState.getBoardCards(round)).map(List::size).orElse(0);
             Assert.assertEquals(
-                    "Test stack size '" + testCardsRoundSize + "' ('" + testData.cardsPerRound.get(round)
-                            + "') does not match actual stack size '" + actualCardsRoundSize + "' ('" + matchState.getBoardCards(round)
-                            + "')",
+                    "Expected cards of round '" + round + "' don't match expected number of '" + testCardsRoundSize + "' with '"
+                            + testData.cardsPerRound
+                            .get(round)
+                            + "'. \n"
+                            + "Actual number of round cards is '" + actualCardsRoundSize + "' with '" + matchState.getBoardCards(round)
+                            + "'",
                     testCardsRoundSize, actualCardsRoundSize);
             if (actualCardsRoundSize == 0) {
                 continue;

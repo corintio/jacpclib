@@ -7,12 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="jacpclib" />
-        <module name="pokerclient" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="jacpclib" target="1.8" />
-      <module name="pokerclient" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

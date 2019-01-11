@@ -9,13 +9,13 @@ public enum BettingType {
     CALL("c"),
     RAISE("r");
 
-    private final String id;
-
     private static Map<String, BettingType> reverse = new HashMap<>();
 
     static {
         Stream.of(values()).forEach(bettingType -> reverse.put(bettingType.id, bettingType));
     }
+
+    private final String id;
 
     BettingType(String id) {
         this.id = id;
@@ -23,5 +23,10 @@ public enum BettingType {
 
     public static BettingType fromId(String id) {
         return reverse.get(id);
+    }
+
+    @Override
+    public String toString() {
+        return name();
     }
 }

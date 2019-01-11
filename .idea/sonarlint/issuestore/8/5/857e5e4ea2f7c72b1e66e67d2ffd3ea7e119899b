@@ -1,5 +1,9 @@
 
-Msquid:S1602",Remove useless curly braces around statement(ÀÈ­üÿÿÿÿ8®õçÑ†,
-hsquid:S1192"GDefine a constant instead of duplicating this literal "round[" 3 times.(À†¼ûÿÿÿÿ8®õçÑ†,
-Msquid:S1602",Remove useless curly braces around statement(ÀÈ­üÿÿÿÿ8®õçÑ†,
-Msquid:S1602",Remove useless curly braces around statement(¨õøÿüÿÿÿÿ8®õçÑ†,
+jsquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(ÄÖîğ
+csquid:S11924"GDefine a constant instead of duplicating this literal "round[" 3 times.(À†¼ûÿÿÿÿ
+Hsquid:S1602N",Remove useless curly braces around statement(ÀÈ­üÿÿÿÿ
+Hsquid:S1602U",Remove useless curly braces around statement(ÀÈ­üÿÿÿÿ
+Hsquid:S1602e",Remove useless curly braces around statement(¨õøÿüÿÿÿÿ
+Fsquid:S00108D")Either remove or fill this block of code.(é–³öûÿÿÿÿ
+Fsquid:S00108q")Either remove or fill this block of code.(é–³öûÿÿÿÿ
+Fsquid:S00108~")Either remove or fill this block of code.(é–³öûÿÿÿÿ

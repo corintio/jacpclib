@@ -13,8 +13,8 @@ public class ServerResponse {
 
     @Override
     public String toString() {
-        return "ServerResponse{" +
-                "matchState=" + matchState +
+        return "ServerResponse{\n" +
+                "\tmatchState = " + matchState + "\n" +
                 '}';
     }
 }
