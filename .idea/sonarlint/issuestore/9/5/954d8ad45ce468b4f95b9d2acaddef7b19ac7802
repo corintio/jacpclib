@@ -1,0 +1,7 @@
+
+Zsquid:CallToDeprecatedMethods"+Remove this use of "get"; it is deprecated.(â’Üï8±’¢ëƒ-
+fsquid:HiddenFieldCheck2"8Rename "bets" which hides the field declared at line 22.(èÂ‰Äüÿÿÿÿ8İ½ãéƒ-
+asquid:CallToDeprecatedMethod‹",Remove this use of "next"; it is deprecated.(ùñó¦ıÿÿÿÿ8«ëƒ-
+vsquid:S3776ƒ"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(Ò‰Õ¦ÿÿÿÿÿ8«ëƒ-
+`squid:CallToDeprecatedMethodq",Remove this use of "next"; it is deprecated.(ßÚªÂûÿÿÿÿ8±’¢ëƒ-
+[squid:CallToDeprecatedMethod"+Remove this use of "get"; it is deprecated.(Äìî°8«ëƒ-

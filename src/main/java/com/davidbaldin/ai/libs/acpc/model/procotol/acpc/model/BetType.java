@@ -21,6 +21,10 @@ public enum BetType {
         this.id = id;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public static BetType fromId(String id) {
         return reverse.get(id);
     }

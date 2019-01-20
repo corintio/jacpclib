@@ -18,7 +18,6 @@ import org.junit.runner.RunWith;
 import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.Bet;
 import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.Card;
 import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.MatchState;
-import com.davidbaldin.ai.libs.acpc.model.procotol.acpc.model.ServerResponse;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 
@@ -132,18 +131,28 @@ public class ACPCParserTest {
 
     @Theory
     public void testDecoding(Pair<String, TestTupl> testTupl) {
-        ACPCParser parser = new ACPCParser();
-        ServerResponse response = parser.parseServerResponse(testTupl.getLeft());
+        ACPCDecoderEncoder parser = new ACPCDecoderEncoder();
+        MatchState matchState = parser.decode(testTupl.getLeft());
         System.out.println(testTupl.getLeft());
         System.out.println(" => ");
-        System.out.println(response.getMatchState());
+        System.out.println(matchState);
         TestTupl testData = testTupl.getRight();
-        assertPosition(testData, response.getMatchState());
-        assertHandNumber(testData, response.getMatchState());
-        assertHole(testData, response.getMatchState());
-        assertRoundCards(testData, response.getMatchState());
-        assertRoundBets(testData, response.getMatchState());
+        assertPosition(testData, matchState);
+        assertHandNumber(testData, matchState);
+        assertHole(testData, matchState);
+        assertRoundCards(testData, matchState);
+        assertRoundBets(testData, matchState);
     }
+
+    @Theory
+    public void testEncoding(Pair<String, TestTupl> testTupl) {
+        ACPCDecoderEncoder parser = new ACPCDecoderEncoder();
+        String expected = testTupl.getLeft();
+        MatchState matchState = parser.decode(expected);
+        String actual = parser.decodeMatchState(matchState);
+        Assert.assertEquals("Encode / Decode should be symmetric", expected, actual);
+    }
+
 
     private void assertPosition(TestTupl testData, MatchState matchState) {
         Assert.assertEquals(testData.position, matchState.getPosition());

@@ -13,6 +13,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import it.unimi.dsi.fastutil.ints.IntIterator;
 
 public class MatchState {
+
     private int position = 0;
     private int handNumber = 0;
     /**
